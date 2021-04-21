@@ -1,0 +1,71 @@
+\documentclass[../main.tex]{subfiles}
+
+\subsection{Ejemplos disparadores}
+\begin{itemize}
+    \item 
+        \begin{lstlisting}[language=Python]
+        0.25 - 0.5 - 0.5 - 0.5 - 0.5 - 0.5
+        0
+        \end{lstlisting}
+    \item 
+        \begin{lstlisting}[language=Python]
+        0.5 - 0.1 - 0.1 - 0.1 - 0.1 - 0.1
+        2.7755575615628914e-17
+        \end{lstlisting}
+    \item 
+        \begin{lstlisting}[language=Python]
+        (1 + 1e-15) == 1
+        False
+        \end{lstlisting}
+    \item 
+        \begin{lstlisting}[language=Python]
+        (1 + 1e-16) == 1
+        True
+        \end{lstlisting}
+    \item
+        \begin{lstlisting}[language=Python]
+        a = 1/3e12
+        b = 1
+        c = -1
+        a + b + c == a + (b + c)
+        False
+        \end{lstlisting}
+\end{itemize}
+
+\subsection{Números de máquina}
+
+Todo número de máquina van a estar simbolizados por
+
+\begin{equation*}
+    \mathcal{M} = \left\{m: m = (-1)^{S} \cdot C \cdot 2^{Q}, S, b_{i} \in \{0, 1\}, C = 1.b_{1}b_{2}\dots b_{p}, E_{min} \leq Q \leq E_{max} \right\}
+\end{equation*}
+
+en donde $S$ es el \textit{bit de signo} y corresponde a un único bit, $C$ es la \textit{mantisa} o \textit{significado} a la que se le asigna una cantidad de bits, que se llama precisión, $Q$ es el \textit{exponente}.
+
+\subsection{Propiedades destacables}
+
+\begin{itemize}
+    \item Los números de máquina son un subconjunto finito de los números racionales.
+    \item Los números de máquina son más densos a valores absolutos menores, y se separan más a medida que se alejan del 0.
+    \item La cota para el error relativo es constante para cualquier número distinto de 0 que se represente.
+\end{itemize}
+
+El mayor (valor absoluto) número de máquina que podemos formar es $nmax = (1.1111\dots)\cdot2^{E_{max}}$. Ejemplo: $E_{max} = 1023$. Eso da aproximadamente $1.8^{308}$. Al intervalo [-nmax, nmax] se lo conoce como rango de máquina.
+
+Si intentamos almacenar un número más grande en valor absoluto que $nmax$ obtendremos una excepción llamada \textit{overflow}.
+
+La computadora devuelve el resultada infinito (con signo) y debe levantar una advertencia en la ejecución del programa.
+
+El menor (en valor absoluto) número de máquina que podemos formar es $nmin = (1.1111\dots)\cdot2^{E_{min}}$. Ejemplo: $E_{min} = -1022$. Eso da aproximadamente $9.8^{-324}$. El intervalo [-nmin, nmin]es un hueco alrededor del cero. 
+
+Si intentamos almacenar un número más chico en valor absoluto que $nmin$ obtendremos una excepción llamada \textit{underflow}.
+
+La computadora devuelve el resultado cero (con signo) y debe levantar una advertencia en la ejecución del programa.
+
+Cuando queremos almacenar un número cualquiera, la computadora lo redeondea a un número de máquina. El criterio más habitual es redondear al más cercano.
+
+TABLA(screenshot )   
+
+\subsection{Formatos típicos}
+\subsection{Aritmética de punto flotante}
+\subsection{Ejemplo final}

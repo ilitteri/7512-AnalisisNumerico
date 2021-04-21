@@ -1,0 +1,88 @@
+\documentclass[../../main.tex]{subfiles}
+
+\subsubsection{Error Absoluto}
+\begin{definition}[Error Absoluto]
+    Sea $\overline{x}$ una aproximación o valor medido de $x$. El \textbf{error absoluto} ($e_{a}$) de una medida es
+    \begin{equation}
+        e_{a} = |x - \overline{x}|
+    \end{equation}
+    El error absoluto es un indicador de la imprecisión que tiene una determinada media. De hecho, cuando se proporciona el resultado de una medida suele venir acompañada de dicha imprecisión.
+\end{definition}
+
+\subsubsection{Cota del Error}
+\begin{definition}[Cota del Error]
+    Sea $\overline{x}$ una aproximación o valor medido de $x$. Se dice que el número $\overline{x}$ está aproximado al número real $x$, $t$ \textbf{dígitos significativos}
+    \begin{equation}
+        |e_{a}| = \leq \Delta x
+    \end{equation}
+    \begin{equation}
+        \Delta x = 
+    \end{equation}
+\end{definition}
+
+\subsubsection{Error Relativo y Error Relativo Porcentual}
+\begin{definition}[Error Relativo]
+    Sea $\overline{x}$ una aproximación o valor medido de $x$. El \textbf{error relativo} ($e_{r}$)
+    \begin{equation}
+        e_{r} = \frac{e_{a}}{x} = \frac{|x - \overline{x}|}{x} \approxeq \frac{\Delta x}{\overline{x}}, x \neq 0
+    \end{equation}
+    \begin{equation}
+        e_{r\%} = \frac{e_{a}}{x} \cdot 100 = \frac{|x - \overline{x}|}{x} \cdot 100 \approxeq \frac{\Delta x}{\overline{x}} \cdot 100 \text{ con } x, \overline{x} \neq 0
+    \end{equation}
+    El error relativo tiene la misión de servir de indicador de la calidad de una medida. 
+\end{definition}
+
+\subsubsection{Propagación de Error}
+\begin{definition}[Propagación de error]
+    Si nosotros tenemos una determinada función
+    
+    \begin{equation*}
+        z = f(x, y, t, ..., q)
+    \end{equation*}
+    
+    y nosotros queremos saber cuál es la cota del error inherente de $z$, la cuál involucra la sumatoria de los errores de todas las variables
+    
+    \begin{equation}
+        \Delta{z} = |f(x, y, t, \dots, q) \pm f(x + \Delta{x}, y + \Delta{y}, t + \Delta{t}, \dots, q + \Delta{q})|
+    \end{equation}
+    
+    Aproximando con Taylor
+    
+    \begin{equation*}
+        \begin{aligned}
+            |\Delta{z}| &\leq \left|\frac{\partial{z}}{\partial{x}}\right|_{\overline{x}, \overline{y}, \overline{t}, \dots, \overline{q}} \cdot \Delta{x} + \left|\frac{\partial{z}}{\partial{y}}\right|_{\overline{x}, \overline{y}, \overline{t}, \dots, \overline{q}} \cdot \Delta{y} + \left|\frac{\partial{z}}{\partial{t}}\right|_{\overline{x}, \overline{y}, \overline{t}, \dots, \overline{q}} \cdot \Delta{t} + \dots + \left|\frac{\partial{z}}{\partial{q}}\right|_{\overline{x}, \overline{y}, \overline{t}, \dots, \overline{q}} \cdot \Delta{q}\\
+            &\leq \sum_{i=0}^{\infty} \left|\frac{\partial{f}}{\partial{x_{i}}}\right|_{\overline{x}_{i}} \cdot \Delta{x_{i}}
+        \end{aligned}
+    \end{equation*}
+\end{definition}
+
+\begin{defexample} Hallar la cota de error inherente propagado para el siguiente cálculo siendo $x = 2.0 \pm 0.1$ e $y = 3.0 \pm 0.2$, $f = x \cdot sin(\frac{y}{40})$
+    \begin{equation*}
+        \overline{x} = 2, \Delta{x} = 0.1, \overline{y} = 3, \Delta{y} = 0.2, \overline{f} = \overline{x} \cdot sin(\frac{\overline{y}}{40})
+    \end{equation*}
+    \begin{equation*}
+        |e_{f}| \leq \sum_{i=0}^{\infty} \left|\frac{\partial{f}}{\partial{x_{i}}}\right|_{\overline{x}_{i}} \cdot \Delta{x_{i}}
+    \end{equation*}
+    \begin{equation*}
+        |e_{f}| \leq \left|\frac{\partial{f}}{\partial{x}}\right|_{\overline{x}, \overline{y}} \cdot |e_{x}| + \left|\frac{\partial{f}}{\partial{y}}\right|_{\overline{x}, \overline{y}} \cdot |e_{y}|
+    \end{equation*}
+    \begin{equation*}
+        |e_{f}| \leq \sin\left(\frac{\overline{y}}{40}\right) \cdot |e_{x}| + \frac{\overline{x} \cdot \cos(\frac{\overline{y}}{40})}{40} \cdot |e_{y}|
+    \end{equation*}
+    \begin{equation*}
+        |e_{f}| \leq 0.01746485831
+    \end{equation*}
+    \begin{equation*}
+        \left.
+            \begin{aligned}
+                &\overline{f} = 0.1498594145\\
+                &\Delta{f} = 0.01746485831 < 0.02
+            \end{aligned}
+        \right\}
+        \quad 
+            \begin{aligned}
+                x &= \overline{x} \pm \Delta x\\
+                &= 0.15 \pm 0.02
+            \end{aligned}
+    \end{equation*}
+\end{defexample}
